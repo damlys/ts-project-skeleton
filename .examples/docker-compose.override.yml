@@ -10,7 +10,7 @@ services:
       - npm
     command:
       - run
-      - dist:repl
+      - src:repl
     ports:
       - mode: host
         target: 8080
