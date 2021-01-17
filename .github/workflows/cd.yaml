@@ -1,4 +1,4 @@
-name: Continuous Integration
+name: Continuous Delivery
 on:
   push:
     branches:
@@ -18,9 +18,14 @@ jobs:
     steps:
       - run: docker login --username="damlys" --password="${{ secrets.DOCKER_TOKEN }}"
       - uses: actions/checkout@v2
-
       - name: Install dependencies
         run: npm install
+      - name: Bump version
+        run: |
+          git config --global user.name "Robot"
+          git config --global user.email "robot@damlys.dev"
+          npm version patch --message "Release %s"
+
       - name: Build application
         run: npm run build
       - name: Run code format check
@@ -46,11 +51,8 @@ jobs:
         run: npm run docker:down
 
       - if: github.event_name == 'push'
-        name: Bump version
+        name: Publish version
         run: |
-          git config --global user.name "Robot"
-          git config --global user.email "robot@damlys.dev"
-          npm version patch --message "Release %s"
           git push
           git push --tags
       - if: github.event_name == 'push'
