@@ -1,0 +1,61 @@
+name: Continuous Integration
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - "**"
+      - "!**.md"
+  pull_request:
+    paths:
+      - "**"
+      - "!**.md"
+jobs:
+  job0:
+    runs-on: ubuntu-latest
+    env:
+      NPM_TOKEN: "${{ secrets.NPM_TOKEN }}"
+    steps:
+      - run: docker login --username="damlys" --password="${{ secrets.DOCKER_TOKEN }}"
+      - uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: npm install
+      - name: Build application
+        run: npm run build
+      - name: Run code format check
+        run: npm run format:check
+      - name: Run code lint check
+        run: npm run lint:check
+      - name: Run code tests
+        run: npm run test:unit
+
+      - name: Build image
+        run: npm run docker:build
+      - name: Copy docker-compose.override.yml
+        run: cp ./.github/docker-compose.override.yml ./docker-compose.override.yml
+      - name: Run containers
+        run: npm run docker:up
+      - name: Wait 10s
+        run: sleep 10
+      - name: Run system tests
+        env:
+          TESTS_ENDPOINT: http://127.0.0.1:8080
+        run: npm run test:e2e
+      - name: Destroy containers
+        run: npm run docker:down
+
+      - if: github.event_name == 'push'
+        name: Bump version
+        run: |
+          git config --global user.name "Robot"
+          git config --global user.email "robot@damlys.dev"
+          npm version patch --message "Release %s"
+          git push
+          git push --tags
+      - if: github.event_name == 'push'
+        name: Publish package
+        run: npm publish
+      - if: github.event_name == 'push'
+        name: Publish image
+        run: npm run docker:publish
