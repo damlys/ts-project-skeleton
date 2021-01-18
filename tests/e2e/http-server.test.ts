@@ -1,8 +1,9 @@
 import "jest";
 import fetch, { Response } from "node-fetch";
+import { testsEndpoint } from "./helpers";
 
 test("should respond", async (): Promise<void> => {
-  const response: Response = await fetch(`${process.env.TESTS_ENDPOINT}/foo/bar/baz`, {
+  const response: Response = await fetch(`${testsEndpoint}/foo/bar/baz`, {
     method: "GET",
   });
   const payload: any = await response.json();
