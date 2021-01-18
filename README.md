@@ -4,7 +4,7 @@
 
 Local machine requirements:
 
-```shell script
+```console
 $ node --version
 v14.15.4
 
@@ -19,45 +19,48 @@ docker-compose version 1.27.3, build unknown
 
 $ docker run --rm hello-world
 This message shows that your installation appears to be working correctly.
+
+$ git --version
+git version 2.17.1
 ```
 
 Get access into registries:
 
-```shell script
+```console
 $ export NPM_TOKEN="..."
 
-$ docker login --username="damlys" --password="..."
+$ docker login --username="..." --password="..."
 ```
 
 Copy or link example configuration file:
 
-```shell script
+```console
 $ cp ./.examples/docker-compose.override.yml ./docker-compose.override.yml
 $ ln --symbolic ./.examples/docker-compose.override.yml ./docker-compose.override.yml
 ```
 
 Install dependencies:
 
-```shell script
+```console
 $ npm install
 ```
 
 Build image:
 
-```shell script
+```console
 $ npm run docker:build
 ```
 
 Run containers:
 
-```shell script
+```console
 $ npm run docker:up
 ```
 
 Give it a shot:
 
-```shell script
-$ docker-compose exec ts-project-skeleton bash -ce "
+```console
+$ docker-compose exec this bash -ce "
     npm run format
     npm run lint
     npm run test
@@ -66,27 +69,33 @@ $ docker-compose exec ts-project-skeleton bash -ce "
 
 See container logs:
 
-```shell script
-$ docker-compose logs ts-project-skeleton
+```console
+$ docker-compose logs this
 ```
 
 Enter container shell:
 
-```shell script
-$ docker-compose exec ts-project-skeleton bash
+```console
+$ docker-compose exec this bash
+```
+
+Destroy containers:
+
+```console
+$ npm run docker:down
 ```
 
 ## Delivery
 
 Publish package:
 
-```shell script
+```console
 $ npm publish
 ```
 
 Publish image:
 
-```shell script
+```console
 $ npm run docker:publish
 ```
 

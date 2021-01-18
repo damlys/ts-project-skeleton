@@ -16,8 +16,11 @@ jobs:
     env:
       NPM_TOKEN: "${{ secrets.NPM_TOKEN }}"
     steps:
-      - run: docker login --username="damlys" --password="${{ secrets.DOCKER_TOKEN }}"
-      - uses: actions/checkout@v2
+      - name: Login to Docker Hub
+        run: docker login --username="damlys" --password="${{ secrets.DOCKER_TOKEN }}"
+      - name: Clone repository
+        uses: actions/checkout@v2
+
       - name: Install dependencies
         run: npm install
       - name: Bump version

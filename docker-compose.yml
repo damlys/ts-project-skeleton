@@ -1,4 +1,6 @@
 version: "3.8"
 services:
-  ts-project-skeleton:
+  this:
     image: "${IMAGE}"
+    environment:
+      TESTS_ENDPOINT: http://127.0.0.1:8080

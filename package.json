@@ -32,7 +32,7 @@
   "dependencies": {},
   "devDependencies": {
     "@damlys/dockerfile": "^0.5.1",
-    "@damlys/ts-sdk": "^0.2.1",
+    "@damlys/ts-sdk": "^1.0.1",
     "@types/node-fetch": "^2.5.8",
     "node-fetch": "^2.6.1"
   },
@@ -53,7 +53,7 @@
     "test:e2e": "jest ./tests/e2e",
     "docker:build": "dockerfile compose | docker-compose --file - build",
     "docker:up": "IMAGE=\"$(dockerfile image)\" docker-compose up --detach",
-    "docker:down": "docker-compose down --volumes",
+    "docker:down": "docker-compose down --remove-orphans --volumes",
     "docker:publish": "dockerfile compose | docker-compose --file - push",
     "version": "add-keepachangelog-header ./CHANGELOG.md && git add ./CHANGELOG.md"
   },

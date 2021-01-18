@@ -1,11 +1,10 @@
 version: "3.8"
 services:
-  ts-project-skeleton:
+  this:
     user: "0" #root
     environment:
-      - NPM_TOKEN
-      - NODE_ENV=development
-      - TESTS_ENDPOINT=http://127.0.0.1:8080
+      NPM_TOKEN: "${NPM_TOKEN}"
+      NODE_ENV: development
     entrypoint:
       - npm
     command:
@@ -18,13 +17,13 @@ services:
         protocol: tcp
     volumes:
       - type: volume
-        source: npm-cache
+        source: npm_cache
         target: /root/.npm
       - type: bind
         source: .
         target: /app
 
 volumes:
-  npm-cache:
+  npm_cache:
     driver: local
-    name: global-npm-cache
+    name: global_npm_cache
