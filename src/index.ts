@@ -1,3 +1,2 @@
-export function hello(): string {
-  return "Hello!";
-}
+export * from "./hello";
+export * from "./http-server";

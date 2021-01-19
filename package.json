@@ -5,11 +5,11 @@
   "publishConfig": {
     "access": "public"
   },
-  "description": "TypeScript project skeleton.",
+  "description": "TypeScript project skeleton for Node.js projects.",
   "keywords": [],
-  "author": {
-    "name": "Damian Łysiak"
-  },
+  "author": "Damian Łysiak",
+  "contributors": [],
+  "license": "UNLICENSE",
   "repository": {
     "type": "git",
     "url": "https://github.com/damlys/ts-project-skeleton.git"
@@ -18,7 +18,8 @@
     "url": "https://github.com/damlys/ts-project-skeleton/issues"
   },
   "files": [
-    "dist"
+    "dist",
+    "docs"
   ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -26,12 +27,12 @@
     "ts-project-skeleton": "dist/bin/main.js"
   },
   "engines": {
-    "node": ">=14.0.0",
+    "node": ">=14.0.0 <15",
     "npm": ">=6.14.4"
   },
   "dependencies": {},
   "devDependencies": {
-    "@damlys/dockerfile": "^0.5.1",
+    "@damlys/dockerfile": "~0.5.1",
     "@damlys/ts-sdk": "^1.0.1",
     "@types/node-fetch": "^2.5.8",
     "node-fetch": "^2.6.1"
@@ -42,11 +43,12 @@
     "src:repl": "ts-node-dev ./src/bin/main.ts run-http-server",
     "dist:exec": "node ./dist/bin/main.js run-http-server",
     "dist:repl": "nodemon ./dist/bin/main.js run-http-server",
+    "dist:debug": "node --inspect='0.0.0.0:9229' ./dist/bin/main.js run-http-server",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "eslint './**/*.{ts,tsx}' --fix",
     "lint:check": "eslint './**/*.{ts,tsx}'",
-    "test": "jest",
+    "test": "jest --verbose",
     "test:coverage": "rm -rf ./coverage && jest --coverage",
     "test:watch": "jest --watchAll",
     "test:unit": "jest ./tests/unit",
@@ -55,6 +57,7 @@
     "docker:up": "IMAGE=\"$(dockerfile image)\" docker-compose up --detach",
     "docker:down": "docker-compose down --remove-orphans --volumes",
     "docker:publish": "dockerfile compose | docker-compose --file - push",
+    "docker:pull": "dockerfile compose | docker-compose --file - pull",
     "version": "add-keepachangelog-header ./CHANGELOG.md && git add ./CHANGELOG.md"
   },
   "dockerfile": {

@@ -1,6 +1,7 @@
 import "jest";
-import { hello } from "../../src";
+import * as index from "../../src";
 
-test("should say hello", (): void => {
-  expect(hello()).toBe("Hello!");
+test("should export public API parts", (): void => {
+  expect(index).toHaveProperty("hello");
+  expect(index).toHaveProperty("runHttpServer");
 });

@@ -1,9 +1,7 @@
 import { createServer, IncomingMessage, Server, ServerResponse } from "http";
-import { hello } from "./index";
+import { hello } from "./hello";
 
-export function runHttpServer(): void {
-  const host: string = "0.0.0.0";
-  const port: number = 8080;
+export function runHttpServer(port: number = 8080, host: string = "0.0.0.0"): void {
   const httpServer: Server = createServer();
 
   httpServer.on("listening", (): void => {

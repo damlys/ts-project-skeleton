@@ -12,7 +12,7 @@ on:
       - "!**.md"
 jobs:
   job0:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     env:
       NPM_TOKEN: "${{ secrets.NPM_TOKEN }}"
     steps:
@@ -25,8 +25,8 @@ jobs:
         run: npm install
       - name: Bump version
         run: |
-          git config --global user.name "Robot"
-          git config --global user.email "robot@damlys.dev"
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
           npm version patch --message "Release %s"
 
       - name: Build application

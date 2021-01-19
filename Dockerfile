@@ -1,10 +1,9 @@
 FROM node:14-slim AS builder
 
-WORKDIR /app
-
 ARG NPM_TOKEN
 ENV NODE_ENV="development"
-COPY ./.npmrc ./package.json ./package-lock.json ./
+COPY ./.npmrc ./package.json ./package-lock.json /app/
+WORKDIR /app
 RUN npm install \
 && npm cache clean --force
 
@@ -14,11 +13,10 @@ RUN npm run build
 
 FROM node:14-slim
 
-WORKDIR /app
-
 ARG NPM_TOKEN
 ENV NODE_ENV="production"
-COPY ./.npmrc ./package.json ./package-lock.json ./
+COPY ./.npmrc ./package.json ./package-lock.json /app/
+WORKDIR /app
 RUN npm install \
 && npm cache clean --force
 
