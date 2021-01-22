@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - master
+      - develop
     paths:
       - "**"
       - "!**.md"
@@ -15,19 +16,23 @@ jobs:
     runs-on: ubuntu-20.04
     env:
       NPM_TOKEN: "${{ secrets.NPM_TOKEN }}"
+      NODE_ENV: development
     steps:
       - name: Login to Docker Hub
         run: docker login --username="damlys" --password="${{ secrets.DOCKER_TOKEN }}"
-      - name: Clone repository
-        uses: actions/checkout@v2
-
-      - name: Install dependencies
-        run: npm install
-      - name: Bump version
+      - name: Set Git user
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
-          npm version patch --message "Release %s"
+      - name: Clone repository
+        uses: actions/checkout@v2
+
+      - name: Run NPM vulnerability scanning
+        run: npm audit --audit-level=high
+      - name: Install dependencies
+        run: npm install
+      - name: Bump version
+        run: npm version patch --message "Release %s"
 
       - name: Build application
         run: npm run build
@@ -40,6 +45,9 @@ jobs:
 
       - name: Build image
         run: npm run docker:build
+      - name: Run Docker vulnerability scanning
+        run: npm run docker:audit
+        continue-on-error: true
       - name: Copy docker-compose.override.yml
         run: cp ./.github/docker-compose.override.yml ./docker-compose.override.yml
       - name: Run containers
@@ -53,14 +61,12 @@ jobs:
       - name: Destroy containers
         run: npm run docker:down
 
-      - if: github.event_name == 'push'
+      - if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         name: Publish version
-        run: |
-          git push
-          git push --tags
-      - if: github.event_name == 'push'
+        run: git push && git push --tags
+      - if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         name: Publish package
         run: npm publish
-      - if: github.event_name == 'push'
+      - if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         name: Publish image
         run: npm run docker:publish

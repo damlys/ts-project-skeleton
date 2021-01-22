@@ -54,10 +54,11 @@
     "test:unit": "jest ./tests/unit",
     "test:e2e": "jest ./tests/e2e",
     "docker:build": "dockerfile compose | docker-compose --file - build",
+    "docker:audit": "docker scan \"$(dockerfile image)\"",
     "docker:up": "IMAGE=\"$(dockerfile image)\" docker-compose up --detach",
     "docker:down": "docker-compose down --remove-orphans --volumes",
-    "docker:publish": "dockerfile compose | docker-compose --file - push",
-    "docker:pull": "dockerfile compose | docker-compose --file - pull",
+    "docker:publish": "docker push \"$(dockerfile image)\"",
+    "docker:pull": "docker pull \"$(dockerfile image)\"",
     "version": "add-keepachangelog-header ./CHANGELOG.md && git add ./CHANGELOG.md"
   },
   "dockerfile": {

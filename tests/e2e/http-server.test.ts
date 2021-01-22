@@ -11,8 +11,8 @@ describe("GET /hello", (): void => {
 
     expect(response.status).toBe(200);
     expect(response.headers.get("Content-Type")).toBe("application/json");
-    expect(payload.method).toEqual("GET");
-    expect(payload.url).toEqual("/hello");
-    expect(payload.message).toEqual("Hello!");
+    expect(payload.method).toBe("GET");
+    expect(payload.url).toBe("/hello");
+    expect(payload.message).toBe("Hello!");
   });
 });
