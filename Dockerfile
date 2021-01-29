@@ -22,7 +22,7 @@ RUN npm install \
 
 COPY --from=builder /app/dist ./dist
 
-ENTRYPOINT ["node", "./dist/bin/main.js"]
+ENTRYPOINT ["node", "/app/dist/bin/main.js"]
 CMD ["run-http-server"]
 EXPOSE 8080
 USER 1000

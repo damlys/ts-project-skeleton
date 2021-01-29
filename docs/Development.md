@@ -28,7 +28,7 @@ $ npm run docker:up
 Run tests and checks:
 
 ```console
-$ docker-compose exec this bash -ce "
+$ docker-compose exec app bash -ce "
     npm run format
     npm run lint
     npm run test
@@ -38,13 +38,13 @@ $ docker-compose exec this bash -ce "
 See container logs:
 
 ```console
-$ docker-compose logs this
+$ docker-compose logs app
 ```
 
 Enter container shell:
 
 ```console
-$ docker-compose exec this bash
+$ docker-compose exec app bash
 ```
 
 Destroy containers:
@@ -53,16 +53,16 @@ Destroy containers:
 $ npm run docker:down
 ```
 
-## Manual version updating
+## Versioning
 
-Update `MINOR` version:
+Bump `MINOR` version:
 
 ```console
-$ npm version minor --git-tag-version=false --ignore-scripts
+$ npm version preminor --ignore-scripts --git-tag-version=false
 ```
 
-Update `MAJOR` version:
+Bump `MAJOR` version:
 
 ```console
-$ npm version major --git-tag-version=false --ignore-scripts
+$ npm version premajor --ignore-scripts --git-tag-version=false
 ```

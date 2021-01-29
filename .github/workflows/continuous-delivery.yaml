@@ -31,7 +31,11 @@ jobs:
         run: npm audit --audit-level=high
       - name: Install dependencies
         run: npm install
-      - name: Bump version
+      - if: github.event_name == 'push' && github.ref == 'refs/heads/develop'
+        name: Bump version (pre-release)
+        run: npm version prerelease --message "Pre-release %s" --ignore-scripts
+      - if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        name: Bump version (release)
         run: npm version patch --message "Release %s"
 
       - name: Build application
@@ -61,12 +65,12 @@ jobs:
       - name: Destroy containers
         run: npm run docker:down
 
-      - if: github.event_name == 'push' && github.ref == 'refs/heads/master'
-        name: Publish version
-        run: git push && git push --tags
-      - if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+      - if: github.event_name == 'push'
         name: Publish package
         run: npm publish
-      - if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+      - if: github.event_name == 'push'
         name: Publish image
         run: npm run docker:publish
+      - if: github.event_name == 'push'
+        name: Publish version
+        run: git push && git push --tags
