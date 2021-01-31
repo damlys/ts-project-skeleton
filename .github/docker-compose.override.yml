@@ -1,6 +1,6 @@
 version: "3.8"
 services:
-  app:
+  ts-project-skeleton:
     ports:
       - mode: host
         target: 8080

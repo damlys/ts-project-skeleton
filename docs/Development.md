@@ -28,7 +28,7 @@ $ npm run docker:up
 Run tests and checks:
 
 ```console
-$ docker-compose exec app bash -ce "
+$ docker-compose exec ts-project-skeleton bash -ce "
     npm run format
     npm run lint
     npm run test
@@ -38,13 +38,13 @@ $ docker-compose exec app bash -ce "
 See container logs:
 
 ```console
-$ docker-compose logs app
+$ docker-compose logs ts-project-skeleton
 ```
 
 Enter container shell:
 
 ```console
-$ docker-compose exec app bash
+$ docker-compose exec ts-project-skeleton bash
 ```
 
 Destroy containers:

@@ -1,4 +1,4 @@
-# TypeScript project skeleton
+# `ts-project-skeleton`
 
 TypeScript project skeleton for Node.js projects.
 
