@@ -12,7 +12,7 @@ help, h               Displays the help message
 version, v            Displays the application version
 
 Environment variables:
-TPS_LOG_LEVEL         The application log level
+APP_LOG_LEVEL         The application log level
                       Value: debug|info|notice|warning|error|critical|alert|emergency
                       Default: debug
 `;
@@ -28,7 +28,7 @@ function getVersion(): string {
 
 async function main(): Promise<void> {
   try {
-    const logLevel: string = process.env.TPS_LOG_LEVEL || "debug"; // eslint-disable-line
+    const logLevel: string = process.env.APP_LOG_LEVEL || "debug"; // eslint-disable-line
 
     switch (process.argv[2]) {
       case "run-http-server":

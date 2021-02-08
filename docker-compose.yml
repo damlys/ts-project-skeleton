@@ -1,6 +1,8 @@
 version: "3.8"
 services:
-  ts-project-skeleton:
+  http-server:
     image: "${IMAGE}"
     environment:
       TESTS_ENDPOINT: http://127.0.0.1:8080
+    command:
+      - run-http-server

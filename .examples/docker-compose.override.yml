@@ -1,6 +1,6 @@
 version: "3.8"
 services:
-  ts-project-skeleton:
+  http-server:
     user: "0" #root
     environment:
       NPM_TOKEN: "${NPM_TOKEN}"
@@ -10,6 +10,7 @@ services:
     command:
       - run
       - src:repl
+      - run-http-server
     ports:
       - mode: host
         target: 8080
