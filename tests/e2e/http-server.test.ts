@@ -1,10 +1,10 @@
 import "jest";
 import fetch, { Response } from "node-fetch";
-import { testsEndpoint } from "./helpers";
+import { httpTestsEndpoint } from "./helpers";
 
 describe("GET /hello", (): void => {
   test("should respond with Hello! message", async (): Promise<void> => {
-    const response: Response = await fetch(`${testsEndpoint}/hello`, {
+    const response: Response = await fetch(`${httpTestsEndpoint}/hello`, {
       method: "GET",
     });
     const payload: any = await response.json();

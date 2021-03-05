@@ -1,8 +1,8 @@
 version: "3.8"
 services:
-  http-server:
+  http_server:
     image: "${IMAGE}"
     environment:
-      TESTS_ENDPOINT: http://127.0.0.1:8080
+      HTTP_TESTS_ENDPOINT: http://127.0.0.1:8080
     command:
       - run-http-server

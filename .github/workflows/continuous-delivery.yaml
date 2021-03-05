@@ -60,7 +60,7 @@ jobs:
         run: sleep 10
       - name: Run system tests
         env:
-          TESTS_ENDPOINT: http://127.0.0.1:8080
+          HTTP_TESTS_ENDPOINT: http://127.0.0.1:8080
         run: npm run test:e2e
       - name: Destroy containers
         run: npm run docker:down

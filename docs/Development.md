@@ -28,7 +28,7 @@ $ npm run docker:up
 Run tests and checks:
 
 ```console
-$ docker-compose exec http-server bash -ce "
+$ docker-compose exec http_server bash -ce "
     npm run format
     npm run lint
     npm run test
@@ -38,13 +38,13 @@ $ docker-compose exec http-server bash -ce "
 See container logs:
 
 ```console
-$ docker-compose logs http-server
+$ docker-compose logs http_server
 ```
 
 Enter container shell:
 
 ```console
-$ docker-compose exec http-server bash
+$ docker-compose exec http_server bash
 ```
 
 Destroy containers:
