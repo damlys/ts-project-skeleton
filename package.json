@@ -32,10 +32,10 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@damlys/dockerfile": "~0.6.0",
     "@damlys/ts-sdk": "^1.0.1",
     "@types/node-fetch": "^2.5.8",
-    "node-fetch": "^2.6.1"
+    "node-fetch": "^2.6.1",
+    "standard-version": "^9.2.0"
   },
   "scripts": {
     "build": "rm -rf ./dist && tsc",
@@ -53,21 +53,13 @@
     "test:watch": "jest --watchAll",
     "test:unit": "jest ./tests/unit",
     "test:e2e": "jest ./tests/e2e",
-    "docker:build": "dockerfile compose | docker-compose --file - build",
-    "docker:audit": "docker scan \"$(dockerfile image)\"",
-    "docker:up": "IMAGE=\"$(dockerfile image)\" docker-compose up --detach",
+    "docker:build": "docker-compose build",
+    "docker:audit": "docker scan 'damlys/ts-project-skeleton:0.0.10'",
+    "docker:up": "docker-compose up --detach",
     "docker:down": "docker-compose down --remove-orphans --volumes",
-    "docker:publish": "docker push \"$(dockerfile image)\"",
-    "docker:pull": "docker pull \"$(dockerfile image)\"",
-    "version": "add-keepachangelog-header ./CHANGELOG.md && git add ./CHANGELOG.md"
-  },
-  "dockerfile": {
-    "build": {
-      "context": ".",
-      "dockerfile": "Dockerfile",
-      "args": [
-        "NPM_TOKEN"
-      ]
-    }
+    "docker:publish": "docker-compose push",
+    "docker:pull": "docker-compose pull",
+    "prerelease": "standard-version --prerelease='rc' --skip.changelog",
+    "release": "standard-version"
   }
 }

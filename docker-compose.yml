@@ -1,7 +1,12 @@
 version: "3.8"
 services:
   http_server:
-    image: "${IMAGE}"
+    image: damlys/ts-project-skeleton:0.0.10
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - NPM_TOKEN
     environment:
       HTTP_TESTS_ENDPOINT: http://127.0.0.1:8080
     command:
