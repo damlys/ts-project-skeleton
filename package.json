@@ -27,11 +27,11 @@
     "ts-project-skeleton": "dist/bin/main.js"
   },
   "engines": {
-    "node": ">=14.0.0 <15",
-    "npm": ">=6.14.4"
+    "node": ">=16.0.0 <17",
+    "npm": ">=7.10.0 <8"
   },
-  "dependencies": {},
   "devDependencies": {
+    "@damlys/standard-version-updater-docker": "^1.0.0",
     "@damlys/ts-sdk": "^1.0.1",
     "@types/node-fetch": "^2.5.8",
     "node-fetch": "^2.6.1",
@@ -54,7 +54,7 @@
     "test:unit": "jest ./tests/unit",
     "test:e2e": "jest ./tests/e2e",
     "docker:build": "docker-compose build",
-    "docker:audit": "docker scan 'damlys/ts-project-skeleton:0.0.10'",
+    "docker:audit": "VERSION=latest docker-compose build && docker scan damlys/ts-project-skeleton:latest",
     "docker:up": "docker-compose up --detach",
     "docker:down": "docker-compose down --remove-orphans --volumes",
     "docker:publish": "docker-compose push",
