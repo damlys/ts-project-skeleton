@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   http_server:
-    image: damlys/ts-project-skeleton:${VERSION:-0.0.0}
+    image: damlys/ts-project-skeleton:${VERSION:-0.0.12-rc.0}
     build:
       context: .
       dockerfile: Dockerfile

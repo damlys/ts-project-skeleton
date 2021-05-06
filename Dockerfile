@@ -2,7 +2,7 @@ FROM node:16-slim AS builder
 
 ARG NPM_TOKEN
 ENV NODE_ENV="development"
-ENV VERSION="0.0.0"
+ENV VERSION="0.0.12-rc.0"
 COPY ./.npmrc ./package.json ./package-lock.json /app/
 WORKDIR /app
 RUN npm install \
@@ -16,7 +16,7 @@ FROM node:16-slim
 
 ARG NPM_TOKEN
 ENV NODE_ENV="production"
-ENV VERSION="0.0.0"
+ENV VERSION="0.0.12-rc.0"
 COPY ./.npmrc ./package.json ./package-lock.json /app/
 WORKDIR /app
 RUN npm install \
