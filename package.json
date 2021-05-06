@@ -1,6 +1,6 @@
 {
   "name": "@damlys/ts-project-skeleton",
-  "version": "0.0.12-rc.0",
+  "version": "0.0.12",
   "private": false,
   "publishConfig": {
     "access": "public"
