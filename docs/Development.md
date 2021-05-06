@@ -55,14 +55,7 @@ $ npm run docker:down
 
 ## Versioning
 
-Bump `MINOR` version:
-
 ```console
-$ npm version preminor --ignore-scripts --git-tag-version=false
-```
-
-Bump `MAJOR` version:
-
-```console
-$ npm version premajor --ignore-scripts --git-tag-version=false
+$ npm run prerelease
+$ npm run release
 ```

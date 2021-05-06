@@ -32,11 +32,11 @@ jobs:
       - name: Install dependencies
         run: npm install
       - if: github.event_name == 'push' && github.ref == 'refs/heads/develop'
-        name: Bump version (pre-release)
-        run: npm version prerelease --message "Pre-release %s" --ignore-scripts
+        name: Bump version (prerelease)
+        run: npm run prerelease
       - if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         name: Bump version (release)
-        run: npm version patch --message "Release %s"
+        run: npm run release
 
       - name: Build application
         run: npm run build

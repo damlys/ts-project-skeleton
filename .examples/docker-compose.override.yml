@@ -7,9 +7,9 @@ services:
       NODE_ENV: development
     entrypoint:
       - npm
-    command:
       - run
       - src:repl
+    command:
       - run-http-server
     ports:
       - mode: host
