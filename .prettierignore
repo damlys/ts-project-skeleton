@@ -5,3 +5,9 @@
 /coverage
 /dist
 /node_modules
+
+#############################
+### Other
+#############################
+
+/CHANGELOG.md

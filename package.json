@@ -59,7 +59,7 @@
     "docker:down": "docker-compose down --remove-orphans --volumes",
     "docker:publish": "docker-compose push",
     "docker:pull": "docker-compose pull",
-    "prerelease": "standard-version --prerelease='rc' --skip.changelog",
-    "release": "standard-version"
+    "bump-version:prerelease": "standard-version --prerelease='rc'",
+    "bump-version:release": "standard-version"
   }
 }
