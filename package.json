@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "@damlys/standard-version-updater-docker": "^1.0.0",
-    "@damlys/ts-sdk": "^2.0.0",
+    "@damlys/ts-sdk": "^2.0.1",
     "@types/node-fetch": "^2.5.10",
     "node-fetch": "^2.6.1",
     "standard-version": "^9.3.0"
