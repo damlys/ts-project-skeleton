@@ -32,10 +32,10 @@
   },
   "devDependencies": {
     "@damlys/standard-version-updater-docker": "^1.0.0",
-    "@damlys/ts-sdk": "^1.0.1",
-    "@types/node-fetch": "^2.5.8",
+    "@damlys/ts-sdk": "^2.0.0",
+    "@types/node-fetch": "^2.5.10",
     "node-fetch": "^2.6.1",
-    "standard-version": "^9.2.0"
+    "standard-version": "^9.3.0"
   },
   "scripts": {
     "build": "rm -rf ./dist && tsc",
