@@ -31,13 +31,12 @@
     "npm": ">=7.10.0 <8"
   },
   "devDependencies": {
-    "@damlys/standard-version-updater-docker": "^1.0.0",
-    "@damlys/ts-sdk": "^2.0.1",
+    "@damlys/ts-sdk": "^2.1.0",
     "@types/node-fetch": "^2.5.10",
-    "node-fetch": "^2.6.1",
-    "standard-version": "^9.3.0"
+    "node-fetch": "^2.6.1"
   },
   "scripts": {
+    "prepare": "if [[ \"${NODE_ENV}\" != \"production\" ]]; then husky install; fi",
     "build": "rm -rf ./dist && tsc",
     "src:exec": "ts-node ./src/bin/main.ts",
     "src:repl": "ts-node-dev ./src/bin/main.ts",
